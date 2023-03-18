@@ -28,9 +28,10 @@ def filter_existing_files(file_list):
     return valid_files
 
 
-# Get list of subdirectories in source directory sorted by index from name
-subdirs = sorted([d for d in utils.list(constants.SOURCE_DIR) if utils.is_dir(
-    utils.join_path(constants.SOURCE_DIR, d))], key=lambda x: int(x[:2]))
+# Get list of subdirectories in source directory
+subdirs = [d for d in utils.list(constants.SOURCE_DIR) if utils.is_dir(
+    utils.join_path(constants.SOURCE_DIR, d))]
+
 print('Processed subdirectories:', ', '.join(subdirs))
 
 
@@ -55,7 +56,6 @@ for i in range(combinations):
     used_zindexes = set()
     random_images = {}
     used_model = random.choice(models)
-    print(used_model)
     for subdir in subdirs:
         if len(image_files[subdir]) > 0:
             subdir_path = utils.join_path(constants.SOURCE_DIR, subdir)
